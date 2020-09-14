@@ -5,8 +5,12 @@
 <title>My Login Page</title>
 </head>
 <body>
-<h2>LOGIN PAGE</h2>
+<h2>LOGIN PAGE</h2> 
 <br><hr><br>
+	<p style="color:green" th:if="${param.logout != null}">
+		Successfully Logged out!
+	</p>
+	<br>
 	<h4>Enter Details </h4><br>
 	
 	<form action="# "th:action="@{/authenticateDetails}" method="POST">

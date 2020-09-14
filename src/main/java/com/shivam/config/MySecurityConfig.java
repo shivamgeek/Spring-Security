@@ -29,10 +29,12 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests() 						// Allow restriction based on HttpServletRequests
 		.anyRequest().authenticated() 					// For any request coming in, authenticate
 		.and()											// AND
-		.formLogin()     								// Customise the login form
+		.formLogin()     								// Customize the login form
 		.loginPage("/myLoginPage")						// Use this login page
-		.loginProcessingUrl("/authenticateDetails")		// Process the login details at this URL
-		.permitAll();									// Allow all to see login page
+		.loginProcessingUrl("/authenticateDetails")		// Process the login details at this URL with POST -> Automatically authenticates based on above user config
+		.permitAll()									// Allow all to see login page
+		.and()
+		.logout().permitAll();							// Add logout support => Automatic logout functinality at /logout POST method
 	}
 	
 	
