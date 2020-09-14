@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <title>Login Successful</title>
 </head>
 <body>
 
-<h4>Welcome User</h4>
+<h4>Welcome to Homepage</h4>
+<hr>
+User Details - <br><br>
+User: <span sec:authentication="name"></span><br>
+Roles: <span sec:authentication="principal.authorities"></span>
 
 <br><br>
 
