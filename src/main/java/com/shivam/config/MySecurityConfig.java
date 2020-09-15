@@ -36,7 +36,10 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 		.loginProcessingUrl("/authenticateDetails")		// Process the login details at this URL with POST -> Automatically authenticates based on above user config
 		.permitAll()									// Allow all to see login page
 		.and()
-		.logout().permitAll();							// Add logout support => Automatic logout functinality at /logout POST method
+		.logout().permitAll()							// Add logout support => Automatic logout functinality at /logout POST method
+		.and()
+		.exceptionHandling()
+		.accessDeniedPage("/my-access-denied");
 	}
 	
 	
