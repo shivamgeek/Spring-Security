@@ -18,8 +18,8 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 		UserBuilder users = User.withDefaultPasswordEncoder();
 		
 		auth.inMemoryAuthentication().withUser(users.username("employee1").password("s").roles("EMPLOYEE"))
-									 .withUser(users.username("manager1").password("s").roles("MANAGER", "EMPLOYEE"))
-									 .withUser(users.username("admin1").password("s").roles("ADMIN"));
+									 .withUser(users.username("manager1").password("s").roles("EMPLOYEE", "MANAGER"))
+									 .withUser(users.username("admin1").password("s").roles("EMPLOYEE", "ADMIN"));
 		
 	}
 
@@ -27,7 +27,9 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http.authorizeRequests() 						// Allow restriction based on HttpServletRequests
-		.anyRequest().authenticated()					// For any request coming in, authenticate
+		.antMatchers("/").hasRole("EMPLOYEE")
+		.antMatchers("/leaders/**").hasRole("MANAGER")
+		.antMatchers("/system/**").hasRole("ADMIN")
 		.and()											// AND
 		.formLogin()     								// Customize the login form
 		.loginPage("/myLoginPage")						// Use this login page
