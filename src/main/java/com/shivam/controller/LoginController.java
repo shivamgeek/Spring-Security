@@ -11,4 +11,15 @@ public class LoginController {
 		return "myLoginPage";
 	}
 	
+	@GetMapping("/leaders")
+	public String showLeaders() {
+		return "leaders-meeting";
+	}
+	
+	@GetMapping("/system")
+	public String showSystem() {
+		return "system-info";
+	}
+	
+	
 }
